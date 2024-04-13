@@ -1,0 +1,13 @@
+<main class="container mx-auto">
+    <div class="w-full text-center">
+        <h1 class="text-4xl text-slate-600">Quick Glance</h1>
+    </div>
+    <button (click)="addItem()">
+        Add item
+    </button>
+    <div *ngFor="let item of items">
+        {{ item }}
+    </div>
+</main>
+
+<router-outlet />
