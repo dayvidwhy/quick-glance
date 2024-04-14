@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 interface NoteBook {
     title: string;
@@ -10,7 +11,7 @@ interface NoteBook {
 @Component({
     selector: "app-root",
     standalone: true,
-    imports: [RouterOutlet, CommonModule],
+    imports: [RouterOutlet, CommonModule, FormsModule],
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css"
 })
@@ -38,7 +39,7 @@ export class AppComponent {
 
     addNote () {
         if (this.currentNoteBook) {
-            this.currentNoteBook.notes.push("new note");
+            this.currentNoteBook.notes.push(" ");
         }
     }
 }
