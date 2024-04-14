@@ -5,6 +5,8 @@ import { FormsModule } from "@angular/forms";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ButtonComponent } from "./button/button.component";
+import { NgIconComponent, provideIcons } from "@ng-icons/core";
+import { heroBookOpen, heroXMark } from "@ng-icons/heroicons/outline";
 
 interface NoteBook {
     title: string;
@@ -20,8 +22,10 @@ interface NoteBook {
         FormsModule,
         HeaderComponent,
         FooterComponent,
-        ButtonComponent
+        ButtonComponent,
+        NgIconComponent
     ],
+    viewProviders: [provideIcons({ heroBookOpen, heroXMark })],
     templateUrl: "./app.component.html"
 })
 export class AppComponent {
@@ -35,7 +39,7 @@ export class AppComponent {
         const notebookId = crypto.randomUUID();
         const newNotebook = {
             title: "Notebook",
-            notes: [],
+            notes: ["", "", ""],
             id: notebookId
         };
         this.notebooks.push(newNotebook);

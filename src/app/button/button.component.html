@@ -1,3 +1,8 @@
-<button class="transition-all block w-fit py-1 px-2 text-xs bg-slate-400 text-slate-50 rounded-md hover:text-slate-400 hover:bg-slate-50 border border-slate-400" (click)="handleClick()">
+<button
+    [ngClass]="{
+        'bg-inherit': variant === 'secondary',
+        'bg-slate-400': variant === 'primary',
+    }"
+    class="transition-all block hover:bg-slate-50 w-fit py-1 px-2 hover:text-slate-400 text-xs text-slate-50 rounded-md border border-slate-400" (click)="handleClick()">
     {{ text }}
 </button>

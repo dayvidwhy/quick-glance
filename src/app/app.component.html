@@ -2,28 +2,32 @@
     <app-header></app-header>
     <div class="flex-1 overflow-hidden">
         <div class="flex flex-row h-full">
-            <div class="w-2/12 overflow-auto border-r border-slate-600 p-1">
-                <div class="my-1 flex justify-between">
-                    <h2 class="w-full text-xs font-bold p-1">
+            <div class="w-48 overflow-y-auto bg-slate-700 border-r border-slate-600 text-slate-300">
+                <div class="my-1 flex justify-between align-middle p-2">
+                    <h2 class="my-auto text-xs font-bold">
                         Notebooks
                     </h2>
                     <app-button
+                        [variant]="'secondary'"
                         (clickHandler)="addNotebook()"
-                        [text]="'Add'">
+                        [text]="'Create'">
                     </app-button>
                 </div>
                 <ul>
                     @for (notebook of notebooks; track $index) {
-                        <li [ngClass]="{ 'bg-slate-200': notebook.id === currentNoteBook?.id }">
-                            <button class="w-full text-left text-sm p-2" (click)="setNotebook(notebook)">
-                                {{ notebook.title.length > 10 ? notebook.title.substring(0, 10) + '...' : notebook.title}}
+                        <li [ngClass]="{ 'bg-slate-800': notebook.id === currentNoteBook?.id }">
+                            <button class="w-full text-left text-xs p-2 flex justify-start align-middle" (click)="setNotebook(notebook)">
+                                <ng-icon size="16" class="mr-1" name="heroBookOpen"></ng-icon>
+                                <span class="font-bold">
+                                    {{ notebook.title.length > 10 ? notebook.title.substring(0, 10) + '...' : notebook.title}}
+                                </span>
                             </button>
                         </li>
                     }
                 </ul>
             </div>
-            <div class="w-10/12 overflow-auto p-8">
-                <div class="">
+            <div class="flex-1 overflow-y-auto p-6 bg-slate-50">
+                <div class="bg-white p-4 shadow">
                     @if (currentNoteBook) {
                         <div class="flex flex-row w-full justify-between">
                             <input
@@ -32,11 +36,13 @@
                                 />
                             <div class="flex">
                                 <app-button
+                                    [variant]="'primary'"
                                     class="mr-2"
                                     (clickHandler)="speakAll()"
                                     [text]="'Speak'">
                                 </app-button>
                                 <app-button
+                                    [variant]="'primary'"
                                     (clickHandler)="addNote()"
                                     [text]="'Add Note'">
                                 </app-button>
@@ -51,10 +57,12 @@
                                     </textarea>
                                     <div class="ml-2 px-2 flex flex-col justify-between">
                                         <app-button
+                                            [variant]="'primary'"
                                             (clickHandler)="deleteNote($index)"
                                             [text]="'X'">
                                         </app-button>
                                         <app-button
+                                            [variant]="'primary'"
                                             (clickHandler)="speakNote(note)"
                                             [text]="'>'">
                                         </app-button>
