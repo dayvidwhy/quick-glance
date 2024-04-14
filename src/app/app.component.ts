@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -28,12 +28,16 @@ interface NoteBook {
     viewProviders: [provideIcons({ heroBookOpen, heroXMark })],
     templateUrl: "./app.component.html"
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = "quick-glance";
 
     currentNoteBook: NoteBook | null = null;
 
     notebooks: NoteBook[] = [];
+
+    ngOnInit () {
+        this.addNotebook();
+    }
 
     addNotebook () {
         const notebookId = crypto.randomUUID();
