@@ -1,16 +1,5 @@
 <div class="h-full flex flex-col">
-    <nav class="border-slate-600 border-b bg-slate-200 flex justify-between">
-        <ul class="flex flex-row">
-            <li>
-                <a class="block px-1 py-2 text-sm  hover:text-slate-200 hover:bg-slate-600" href="/">Quick Glance</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a class="block text-sm px-1 py-2 hover:text-slate-200 hover:bg-slate-600" href="https://github.com/dayvidwhy">GitHub</a>
-            </li>
-        </ul>
-    </nav>
+    <app-header></app-header>
     <div class="flex-1 overflow-hidden">
         <div class="flex flex-row h-full">
             <div class="w-2/12 overflow-auto border-r border-slate-600 p-1">
@@ -18,9 +7,10 @@
                     <h2 class="w-full text-xs font-bold p-1">
                         Notebooks
                     </h2>
-                    <button class="transition-all block w-fit py-1 px-2 text-xs bg-slate-400 text-slate-50 rounded-md hover:text-slate-400 hover:bg-slate-50 border border-slate-400" (click)="addNotebook()">
-                        Add
-                    </button>
+                    <app-button
+                        (clickHandler)="addNotebook()"
+                        [text]="'Add'">
+                    </app-button>
                 </div>
                 <ul>
                     @for (notebook of notebooks; track $index) {
@@ -40,9 +30,17 @@
                                 class="text-xl w-1/2 focus:ring-0 focus:ring-offset-0 focus:underline"
                                 [(ngModel)]="currentNoteBook.title"
                                 />
-                            <button class="transition-all p-1 text-sm bg-slate-400 text-slate-50 rounded-md hover:text-slate-400 hover:bg-slate-50 border border-slate-400" (click)="addNote()">
-                                Add Note
-                            </button>
+                            <div class="flex">
+                                <app-button
+                                    class="mr-2"
+                                    (clickHandler)="speakAll()"
+                                    [text]="'Speak'">
+                                </app-button>
+                                <app-button
+                                    (clickHandler)="addNote()"
+                                    [text]="'Add Note'">
+                                </app-button>
+                            </div>
                         </div>
                         <div class="w-full flex flex-col">
                             @for (note of currentNoteBook.notes; track $index) {
@@ -51,9 +49,15 @@
                                         [(ngModel)]="currentNoteBook.notes[$index]"
                                         class="p-1 bg-inherit bg-slate-100 rounded block border-none resize-none border-slate-600 w-full">
                                     </textarea>
-                                    <div class="ml-2 px-2 flex flex-col">
-                                        <button (click)="deleteNote($index)">X</button>
-                                        <button (click)="speakNote(note)">></button>
+                                    <div class="ml-2 px-2 flex flex-col justify-between">
+                                        <app-button
+                                            (clickHandler)="deleteNote($index)"
+                                            [text]="'X'">
+                                        </app-button>
+                                        <app-button
+                                            (clickHandler)="speakNote(note)"
+                                            [text]="'>'">
+                                        </app-button>
                                     </div>
                                 </div>
                             }
@@ -63,16 +67,7 @@
             </div>
         </div>
     </div>
-    <footer class="border-t bg-slate-200 border-slate-600">
-        <ul class="flex justify-center">
-            <li>
-                <a class="block py-1 text-xs pr-1" href="https://github.com/dayvidwhy">GitHub -</a>
-            </li>
-            <li>
-                <a class="block py-1 text-xs" href="https://github.com/dayvidwhy">Built by dayvidwhy</a>
-            </li>
-        </ul>
-    </footer>
+    <app-footer></app-footer>
 </div>
 
 <router-outlet />

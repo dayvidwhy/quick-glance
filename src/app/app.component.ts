@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import { ButtonComponent } from "./button/button.component";
 
 interface NoteBook {
     title: string;
@@ -11,9 +14,15 @@ interface NoteBook {
 @Component({
     selector: "app-root",
     standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule],
-    templateUrl: "./app.component.html",
-    styleUrl: "./app.component.css"
+    imports: [
+        RouterOutlet,
+        CommonModule,
+        FormsModule,
+        HeaderComponent,
+        FooterComponent,
+        ButtonComponent
+    ],
+    templateUrl: "./app.component.html"
 })
 export class AppComponent {
     title = "quick-glance";
@@ -53,5 +62,11 @@ export class AppComponent {
         const synth = window.speechSynthesis;
         const utterThis = new SpeechSynthesisUtterance(note);
         synth.speak(utterThis);
+    }
+
+    speakAll () {
+        if (this.currentNoteBook) {
+            this.currentNoteBook.notes.forEach(note => this.speakNote(note));
+        }
     }
 }
