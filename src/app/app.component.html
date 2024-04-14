@@ -1,13 +1,54 @@
-<main class="container mx-auto">
-    <div class="w-full text-center">
-        <h1 class="text-4xl text-slate-600">Quick Glance</h1>
+<div class="h-full flex flex-col">
+    <nav class="border-slate-600 border-b">
+        <ul class="flex flex-row">
+            <li>
+                <a class="block px-1 py-2 hover:text-slate-200 hover:bg-slate-600" href="/">Quick Glance</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="flex-1 overflow-hidden">
+        <div class="flex flex-row h-full">
+            <div class="w-2/12 overflow-auto border-r border-slate-600 p-1">
+                <h2 class="w-full text-sm font-bold">
+                    Notes
+                </h2>
+                <button (click)="addNotebook()">
+                    Add Notebook
+                </button>
+                <ul>
+                    @for (notebook of notebooks; track $index) {
+                        <li [ngClass]="{ 'bg-slate-400': notebook.id === currentNoteBook?.id }">
+                            <button class="w-full" (click)="setNotebook(notebook)">
+                                {{ notebook.title }}
+                            </button>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="w-10/12 overflow-auto p-8">
+                <div class="border-slate-400 border-2">
+                    @if (currentNoteBook) {
+                        <h2>
+                            {{ currentNoteBook.title }}
+                        </h2>
+                        <button (click)="addNote()">
+                            Add Note
+                        </button>
+                        <ul>
+                            @for (note of currentNoteBook.notes; track $index) {
+                                <li>
+                                    {{ note }}
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-    <button (click)="addItem()">
-        Add item
-    </button>
-    <div *ngFor="let item of items">
-        {{ item }}
+    <div class="border-t border-slate-600">
+        Footers
     </div>
-</main>
+</div>
 
 <router-outlet />
