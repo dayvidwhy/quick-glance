@@ -42,4 +42,16 @@ export class AppComponent {
             this.currentNoteBook.notes.push(" ");
         }
     }
+
+    deleteNote (index: number) {
+        if (this.currentNoteBook) {
+            this.currentNoteBook.notes.splice(index, 1);
+        }
+    }
+
+    speakNote (note: string) {
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance(note);
+        synth.speak(utterThis);
+    }
 }
