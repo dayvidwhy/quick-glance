@@ -15,8 +15,13 @@
                 </div>
                 <ul>
                     @for (notebook of notebooks; track $index) {
-                        <li [ngClass]="{ 'bg-slate-800': notebook.id === currentNoteBook?.id }">
-                            <button class="w-full text-left text-xs p-2 flex justify-start align-middle" (click)="setNotebook(notebook)">
+                        <li [ngClass]="{
+                            'bg-slate-800': notebook.id === currentNoteBook?.id,
+                            'text-white': notebook.id === currentNoteBook?.id
+                        }">
+                            <button
+                                class="w-full text-left text-xs p-2 flex justify-start align-middle"
+                                (click)="setNotebook(notebook)">
                                 <ng-icon size="16" class="mr-1" name="heroBookOpen"></ng-icon>
                                 <span class="font-bold">
                                     {{ notebook.title.length > 10 ? notebook.title.substring(0, 10) + '...' : notebook.title}}
