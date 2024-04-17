@@ -36,7 +36,7 @@
                     @if (currentNoteBook) {
                         <div class="flex flex-row w-full justify-between">
                             <input
-                                class="text-xl w-1/2 focus:ring-0 focus:ring-offset-0 focus:underline"
+                                class="text-xl w-1/2 focus:ring-0 focus:ring-offset-0 focus:underline ring-slate-400 outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                                 [(ngModel)]="currentNoteBook.title"
                                 />
                             <div class="flex">
@@ -58,7 +58,7 @@
                                 <div class="my-2 w-full border-l border-slate-400 flex">
                                     <textarea
                                         [(ngModel)]="currentNoteBook.notes[$index]"
-                                        class="p-1 bg-inherit bg-slate-100 rounded block border-none resize-none border-slate-600 w-full">
+                                        class="p-1 bg-inherit bg-slate-100 outline-none ring-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 block border-none resize-none border-slate-600 w-full">
                                     </textarea>
                                     <div class="ml-2 px-2 flex flex-col justify-between">
                                         <app-button
